@@ -12,9 +12,10 @@ public class Mc extends Actor
      * Act - do whatever the MC wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private int gSpeed;
+    public int gSpeed;
     private int speed = 8;
     private final int gravity =1;
+    private boolean check;
     public Mc(){
         gSpeed =0;
     }
@@ -36,6 +37,7 @@ public class Mc extends Actor
         }
 
     }
+
     public boolean onGround()
     {
         Object under = getOneObjectAtOffset(0, getImage().getHeight()/2 + 2, Ground.class);
@@ -49,7 +51,7 @@ public class Mc extends Actor
             jump();
         }
         else {
-            if(gSpeed <30){
+            if(gSpeed <24){
                 
                 gSpeed += gravity;
             }

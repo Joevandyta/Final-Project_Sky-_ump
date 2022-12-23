@@ -18,38 +18,68 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(550, 700, 1); 
         prepare();
-    }
-    public void act(){
- 
-    }
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
-    private int spawntime=0;
+        setPaintOrder(LoseOverlay.class);
+        showscore();
+        timesec();
+        clockt = 0;
 
-    
+    }
+    private int spawntime=0;
+    private int pause=0;
+    private int life = 3;
+    private int clockt;
+    private int second;
+    public int getPoint;
+
     private void prepare()
     {
         Ground ground = new Ground();
         addObject(ground,275,698);
 
-        addObject(new GroundTile(),50 + Greenfoot.getRandomNumber(450),580);
-        addObject(new GroundTile(),50 + Greenfoot.getRandomNumber(450),440);
-        addObject(new GroundTile(),50 + Greenfoot.getRandomNumber(450),300);
-        addObject(new GroundTile(),50 + Greenfoot.getRandomNumber(450),160);
-        addObject(new GroundTile(),50 + Greenfoot.getRandomNumber(450),0);
-
+        addObject(new Underground(),50 + Greenfoot.getRandomNumber(450),480);
+        addObject(new Underground(),50 + Greenfoot.getRandomNumber(450),330);
+        addObject(new Underground(),50 + Greenfoot.getRandomNumber(450),165);
+        addObject(new Underground(),50 + Greenfoot.getRandomNumber(450),0); 
         Mc mc = new Mc();
-        addObject(mc,297,649);
+        addObject(mc,297,500);
 
     }
+    public void act(){
+        timesec();
 
-    public void tilespawn()
-    {
-        //spawntime++;
-        //addObject(new Enemy(),1080,sY);  
-        if (spawntime == 60){
+        //DieScreen();
+    }
+
+    /**
+     * Prepare the world for the start of the program.
+     * That is: create the initial objects and add them to the world.
+     */
+
+    public void addscore(int point){
+        getPoint += point;
+        showscore();
+    }
+
+    private void showscore(){ 
+        showText("Score\n" + getPoint,550/2 ,30);
+    }
+
+    public void DieScreen(){
+
+        if(getObjects(Mc.class).get(0).getY() == 699){
+            Greenfoot.stop();
+            addObject(new LoseOverlay(),540,300); 
         }
     }
+    public int getScore(){
+        return getPoint;
+    }
+    private void timesec(){
+        clockt++;
+        if(clockt % 60 == 0){
+            second = clockt / 60;
+        }
+        showText("Time : "+second ,540 ,30);
+    }   
+    
 }

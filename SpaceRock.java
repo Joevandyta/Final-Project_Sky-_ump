@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Cloud extends Ground
+public class SpaceRock extends Ground
 
 {
     /**
@@ -15,7 +15,7 @@ public class Cloud extends Ground
      */
     public int spawn = Greenfoot.getRandomNumber(400);
     public int item = Greenfoot.getRandomNumber(100);    
-    public Cloud(){
+    public SpaceRock(){
         GreenfootImage image = getImage();
         image.scale(180,21);
      
