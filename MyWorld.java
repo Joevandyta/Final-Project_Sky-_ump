@@ -19,28 +19,27 @@ public class MyWorld extends World
         super(550, 700, 1); 
         prepare();
     }
-    
+    public void act(){
+ 
+    }
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
      */
     private int spawntime=0;
-    public GroundTile groundTile = new GroundTile();
+
+    
     private void prepare()
     {
         Ground ground = new Ground();
         addObject(ground,275,698);
 
-        GroundTile groundTile = new GroundTile();
-        addObject(groundTile,452,480);
-        GroundTile groundTile2 = new GroundTile();
-        addObject(groundTile2,115,350);
-        GroundTile groundTile3 = new GroundTile();
-        addObject(groundTile3,144,550);
-        GroundTile groundTile4 = new GroundTile();
-        addObject(groundTile4,452,215);
-        GroundTile groundTile5 = new GroundTile();
-        addObject(groundTile5,138,90);
+        addObject(new GroundTile(),50 + Greenfoot.getRandomNumber(450),580);
+        addObject(new GroundTile(),50 + Greenfoot.getRandomNumber(450),440);
+        addObject(new GroundTile(),50 + Greenfoot.getRandomNumber(450),300);
+        addObject(new GroundTile(),50 + Greenfoot.getRandomNumber(450),160);
+        addObject(new GroundTile(),50 + Greenfoot.getRandomNumber(450),0);
+
         Mc mc = new Mc();
         addObject(mc,297,649);
 

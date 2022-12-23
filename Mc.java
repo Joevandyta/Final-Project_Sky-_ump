@@ -38,7 +38,7 @@ public class Mc extends Actor
     }
     public boolean onGround()
     {
-        Object under = getOneObjectAtOffset(0, getImage().getHeight()/2 + 2, GroundTile.class);
+        Object under = getOneObjectAtOffset(0, getImage().getHeight()/2 + 2, Ground.class);
         return under != null;
     }
 
@@ -49,11 +49,15 @@ public class Mc extends Actor
             jump();
         }
         else {
-            gSpeed += gravity;
+            if(gSpeed <30){
+                
+                gSpeed += gravity;
+            }
         }
     }
     public void jump(){
         gSpeed = -23;
+        
     }
     private void edge(){
         if(getX()==549){

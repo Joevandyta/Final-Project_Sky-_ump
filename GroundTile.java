@@ -6,46 +6,38 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class GroundTile extends Actor
+public class GroundTile extends Ground
 
 {
     /**
      * Act - do whatever the Ground wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private int platformspd=2;
-    private int FSpeed;
-    int flag;
+    public int spawn = Greenfoot.getRandomNumber(400);
+    
     public GroundTile(){
         GreenfootImage image = getImage();
-        image.scale(110,21);
+        image.scale(180,21);
      
     }
-    public void act()
+     public void act()
     {
-        faling();
-        flag--;
-        goup();
-
+        super.act();
+        spawnGroundTile();
+        
+        
     }
-    private void goup(){
-        if(getY() == 699)
-        {
-            //getWorld().removeObject(this);
-            setLocation (20+ Greenfoot.getRandomNumber(530), 0);
+    protected void spawnGroundTile(){
+        
+        if(this.getWorld() != null){            
+            if(getY() == 140){
+                if(spawn >100){
+                    getWorld().addObject(new GroundTile(),50 + Greenfoot.getRandomNumber(450),0);   
+                }
+                else if(spawn < 100){
+                    getWorld().addObject(new Cloud(),50 + Greenfoot.getRandomNumber(450),0);
+                }
+            }
         }
-    }
-    public void faling(){
-        setLocation (getX(), getY() + FSpeed);
-        if (((Mc)getWorld().getObjects(Mc.class).get(0)).onGround() && FSpeed==0) {
-            fal();
-        }
-        else if(flag==0){
-            FSpeed=0;
-        }
-    }
-    public void fal(){
-        FSpeed = +20;
-        flag=10;
     }
 }
