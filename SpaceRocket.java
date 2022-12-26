@@ -9,7 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class SpaceRocket extends SpaceRock
 
 {
-    private int slide = 4;
+    private int speed = 7;
+    private int slide = speed;
     /**
      * Act - do whatever the Ground wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -19,6 +20,7 @@ public class SpaceRocket extends SpaceRock
         image.scale(180,21);
      
     }
+
      public void act()
     {
         super.act();
@@ -26,12 +28,11 @@ public class SpaceRocket extends SpaceRock
         if(this.getWorld() != null){
             setLocation (getX()+slide, getY());
             if(getX() >= 500){
-                slide = -4;
+                slide = -speed;
             }
             else if(getX() <= 50){
-                slide =4;
+                slide = speed;
             }
         }
     }
-    
 }

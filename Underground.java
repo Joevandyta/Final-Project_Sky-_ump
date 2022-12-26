@@ -23,8 +23,5 @@ public class Underground extends Ground
      public void act()
     {
         super.act();
-
-        
-        
     }
 }

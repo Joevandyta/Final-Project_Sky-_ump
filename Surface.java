@@ -6,15 +6,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class SlideGround extends GroundTile
+public class Surface extends Ground
 
 {
-    private int slide = 4;
     /**
      * Act - do whatever the Ground wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public SlideGround(){
+
+    public Surface(){
         GreenfootImage image = getImage();
         image.scale(180,21);
      
@@ -22,16 +22,7 @@ public class SlideGround extends GroundTile
      public void act()
     {
         super.act();
-        
-        if(this.getWorld() != null){
-            setLocation (getX()+slide, getY());
-            if(getX() >= 500){
-                slide = -4;
-            }
-            else if(getX() <= 50){
-                slide =4;
-            }
-        }
+
     }
-    
+
 }

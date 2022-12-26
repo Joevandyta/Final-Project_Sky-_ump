@@ -8,7 +8,20 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-
+    private int spawntime=0;
+    private int pause=0;
+    private int life = 3;
+    private int clockt;
+    private int second;
+    public int getPoint;
+    private GreenfootImage lvl1;
+    private GreenfootImage lvl2;
+    private GreenfootImage lvl3;
+    private GreenfootImage lvl4;
+    private static final Color transparent = new Color(0,0,0,0);
+    private GreenfootImage background;
+    public int maxhigh = 20;
+    int time = 60 + Greenfoot.getRandomNumber(180);
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -18,18 +31,29 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(550, 700, 1); 
         prepare();
-        setPaintOrder(LoseOverlay.class);
-        showscore();
-        timesec();
         clockt = 0;
-
+        setPaintOrder(Score.class, LoseOverlay.class, Mc.class, Ground.class);
+        lvl1 = new GreenfootImage("BGunderground.jpg");
+        lvl2 = new GreenfootImage("surface.jpg");
+        lvl3 = new GreenfootImage("Sky.jpg");
+        lvl4 = new GreenfootImage("Space.jpg");
     }
-    private int spawntime=0;
-    private int pause=0;
-    private int life = 3;
-    private int clockt;
-    private int second;
-    public int getPoint;
+
+    public GreenfootImage getLevel1(){
+        return lvl1;
+    }
+
+    public GreenfootImage getLevel2(){
+        return lvl2;
+    }
+
+    public GreenfootImage getLevel3(){
+        return lvl3;
+    }
+
+    public GreenfootImage getLevel4(){
+        return lvl4;
+    }
 
     private void prepare()
     {
@@ -42,12 +66,15 @@ public class MyWorld extends World
         addObject(new Underground(),50 + Greenfoot.getRandomNumber(450),0); 
         Mc mc = new Mc();
         addObject(mc,297,500);
+        Score score = new Score();
+        addObject(score,550/2 ,30);
+        score.setPrefix("Score : ");
 
     }
-    public void act(){
-        timesec();
 
-        //DieScreen();
+    public void act(){
+        WinScreen();
+        Things();
     }
 
     /**
@@ -57,29 +84,52 @@ public class MyWorld extends World
 
     public void addscore(int point){
         getPoint += point;
-        showscore();
+
     }
 
-    private void showscore(){ 
-        showText("Score\n" + getPoint,550/2 ,30);
+    public void WinScreen(){
+        if(Score.class != null){
+            int scoretemp = getObjects(Score.class).get(0).getValue();
+
+            if(scoretemp >= maxhigh){
+
+                addObject(new LoseOverlay(),540,300);
+
+                Greenfoot.stop();
+
+            }
+        }
+
+    }
+
+    public int getHigh(){
+        return maxhigh;
     }
 
     public void DieScreen(){
-
         if(getObjects(Mc.class).get(0).getY() == 699){
             Greenfoot.stop();
-            addObject(new LoseOverlay(),540,300); 
+            addObject(new LoseOverlay(),540,300);
         }
     }
-    public int getScore(){
-        return getPoint;
-    }
-    private void timesec(){
-        clockt++;
-        if(clockt % 60 == 0){
-            second = clockt / 60;
+
+    public void Things(){
+        
+        int scoree = getObjects(Score.class).get(0).getValue();
+
+        if(scoree >= maxhigh * 75/100){
+            time--;
+            if(time== 0){          
+                addObject(new Star(),550,10 + Greenfoot.getRandomNumber(450));
+                time = 60 + Greenfoot.getRandomNumber(120);
+            }
         }
-        showText("Time : "+second ,540 ,30);
-    }   
-    
+        else if(scoree >= maxhigh * 50/100){
+            time--;
+            if(time== 0){          
+                addObject(new BgCloud(),550,10 + Greenfoot.getRandomNumber(450));
+                time = 60 + Greenfoot.getRandomNumber(120);
+            }
+        }
+    }
 }

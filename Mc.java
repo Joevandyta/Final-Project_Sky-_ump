@@ -15,25 +15,40 @@ public class Mc extends Actor
     public int gSpeed;
     private int speed = 8;
     private final int gravity =1;
-    private boolean check;
+    GreenfootImage image = getImage();
+    public boolean flag = false;
+    private boolean change = true;
+    private boolean jumpflag= false;
     public Mc(){
         gSpeed =0;
     }
+
     public void act()
     {
         edge();
         fall();
         heromove();
     }
+
     public void heromove(){
-       if (Greenfoot.isKeyDown("a"))
+        
+        if (Greenfoot.isKeyDown("a"))
         {
             setLocation(getX()-speed,getY());
+            if(change == true){
+                getImage().mirrorHorizontally();
+                change = false;
+            }
         }
-       if (Greenfoot.isKeyDown("d"))
+        if (Greenfoot.isKeyDown("d"))
         {
             setLocation(getX()+speed,getY());
-
+            
+            if(change == false){
+                getImage().mirrorHorizontally();
+                change = true;
+            }
+            
         }
 
     }
@@ -41,33 +56,57 @@ public class Mc extends Actor
     public boolean onGround()
     {
         Object under = getOneObjectAtOffset(0, getImage().getHeight()/2 + 2, Ground.class);
+
         return under != null;
     }
 
     public void fall()
     {
         setLocation (getX(), getY() + gSpeed);
+        //setLocation (getX(), getY() + gSpeed);
         if (onGround() && gSpeed>=0) {
+            gSpeed = -23;
             jump();
+            flag = true;
+            
+            
         }
-        else {
+        else{
             if(gSpeed <24){
-                
+                flag =false;
                 gSpeed += gravity;
             }
         }
     }
+
     public void jump(){
-        gSpeed = -23;
-        
+                
+        if(jumpflag==true){
+            setImage("fish.png");
+            change = true;
+            jumpflag = false;
+
+        }else if(jumpflag == false){
+            setImage("turtle.png");
+            change = true;
+            jumpflag = true;
+        }
+        Greenfoot.playSound("amongus kill.mp3");
     }
+
     private void edge(){
+
         if(getX()==549){
             setLocation(1,getY());
+
         }
         if(getX()==0){
             setLocation(549,getY());
-        }
 
+        }
+    }
+
+    public boolean getGSpeed(){
+        return flag;
     }
 }
