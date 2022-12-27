@@ -16,7 +16,7 @@ public class Softcloud extends Ground
     public int spawn = Greenfoot.getRandomNumber(400);
     public int item = Greenfoot.getRandomNumber(100);
     public int flag = 0;
-    public int time = 5;
+    public int time = 40;
     public Softcloud(){
         GreenfootImage image = getImage();
         image.scale(180,21);
@@ -30,7 +30,7 @@ public class Softcloud extends Ground
         if(this.getWorld() != null){
             Mc mc = (Mc)getWorld().getObjects(Mc.class).get(0);
             
-            if (this.isTouching(Mc.class) && mc.getGSpeed() == true) {
+            if (this.isTouching(Mc.class) && getY() >70) {
                 flag=1;
             }
             if(flag == 1){

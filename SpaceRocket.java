@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class SpaceRocket extends SpaceRock
+public class SpaceRocket extends Spaceship
 
 {
     private int speed = 7;

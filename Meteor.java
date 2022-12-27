@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Star extends Actor
+public class Meteor extends Actor
 {
     /**
      * Act - do whatever the Star wants to do. This method is called whenever
@@ -14,14 +14,14 @@ public class Star extends Actor
      */
     public int slide = 1 + Greenfoot.getRandomNumber(3);
 
-    public Star(){
-        GreenfootImage image = getImage();
-        image.setTransparency(150);
+    public Meteor(){
+
     }
 
     public void act()
     {
         setLocation (getX()-slide, getY());
+        turn(1);
         int scoree = getWorld().getObjects(Score.class).get(0).getValue();
         MyWorld mw = (MyWorld)getWorld();
         int height = mw.getHigh();

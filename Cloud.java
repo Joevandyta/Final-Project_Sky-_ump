@@ -14,7 +14,7 @@ public class Cloud extends Ground
      */
     public Cloud(){
         GreenfootImage image = getImage();
-        image.scale(180,21);
+        image.scale(180,31);
      
     }
      public void act()

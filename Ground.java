@@ -13,7 +13,7 @@ public class Ground extends Actor
      * Act - do whatever the Tanah wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public int spawn = Greenfoot.getRandomNumber(300);
+    public int spawn = Greenfoot.getRandomNumber(100);
     public int soft = Greenfoot.getRandomNumber(100);    
     protected int FSpeed;
     public int scoretemp;
@@ -21,17 +21,16 @@ public class Ground extends Actor
 
     int flag;
 
-
     public Ground(){
         GreenfootImage image = getImage();
         image.scale(555,51);
 
     }
 
-
     public int getScoretemp(){
-            return scoretemp;
+        return scoretemp;
     }
+
     public void act()
     {
         faling();
@@ -40,7 +39,7 @@ public class Ground extends Actor
         SpawnGroundTile();
 
     }
-    
+
     public void faling(){
         setLocation (getX(), getY() + FSpeed);
 
@@ -52,6 +51,7 @@ public class Ground extends Actor
         }
 
     }
+
     protected void GroundRemove(){
         if(getY() == 699 && this.getWorld() != null){
             Score score = (Score)getWorld().getObjects(Score.class).get(0);            
@@ -65,7 +65,7 @@ public class Ground extends Actor
     public void fal(){
         FSpeed =  +20;
         flag=10;
-        
+
     }
 
     public void SpawnGroundTile(){
@@ -73,15 +73,16 @@ public class Ground extends Actor
             int scoretemp = getWorld().getObjects(Score.class).get(0).getValue();
             MyWorld mw = (MyWorld)getWorld();
             int height = mw.getHigh();
+
             if(getY() == 160){
                 if(scoretemp >= height * 75/100){
-                    if(spawn >200){
-                        GreenfootImage lvl4 = mw.getLevel4();
-                        getWorld().setBackground(lvl4);
-                        getWorld().addObject(new SpaceRock(),50 + Greenfoot.getRandomNumber(450),0);
+                    GreenfootImage lvl4 = mw.getLevel4();
+                    getWorld().setBackground(lvl4);
+                    if(spawn >50){
+                        getWorld().addObject(new Spaceship(),50 + Greenfoot.getRandomNumber(450),0);
                         //if(item == 1)getWorld().addObject(new PowerUp(),this.getX(),this.getY());
                     }
-                    else if(spawn > 50){
+                    else if(spawn > 20){
                         getWorld().addObject(new SpaceRocket(),50 + Greenfoot.getRandomNumber(450),0);
                     }else{
                         getWorld().addObject(new Spacesurface(),50 + Greenfoot.getRandomNumber(450),0);
@@ -89,11 +90,11 @@ public class Ground extends Actor
                 }else if(scoretemp >= height * 50/100){
                     GreenfootImage lvl3 = mw.getLevel3();
                     getWorld().setBackground(lvl3);
-                    if(spawn >120){
+                    if(spawn >40){
                         getWorld().addObject(new Cloud(),50 + Greenfoot.getRandomNumber(450),0);
                         //if(item == 1)getWorld().addObject(new PowerUp(),this.getX(),this.getY());
                     }
-                    else if(spawn > 20){
+                    else if(spawn > 10){
                         getWorld().addObject(new SlideCloud(),50 + Greenfoot.getRandomNumber(450),0);
                     }else{
                         getWorld().addObject(new Softcloud(),50 + Greenfoot.getRandomNumber(450),0);
@@ -101,21 +102,21 @@ public class Ground extends Actor
                 }else if(scoretemp >= height * 25/100 ){
                     GreenfootImage lvl2 = mw.getLevel2();
                     getWorld().setBackground(lvl2);
-                    if(spawn >150){
+                    if(spawn >50){
                         getWorld().addObject(new Surface(),50 + Greenfoot.getRandomNumber(450),0);
                         //if(item == 1)getWorld().addObject(new PowerUp(),this.getX(),this.getY());
                     }
-                    else if(spawn < 150){
+                    else{
                         getWorld().addObject(new SlideSurface(),50 + Greenfoot.getRandomNumber(450),0);
                     }
                 }else{
                     GreenfootImage lvl1 = mw.getLevel1();
                     getWorld().setBackground(lvl1);
-                    if(spawn >100){
+                    if(spawn >25){
                         getWorld().addObject(new Underground(),50 + Greenfoot.getRandomNumber(450),0);
                         //if(item == 1)getWorld().addObject(new PowerUp(),this.getX(),this.getY());
                     }
-                    else if(spawn < 100){
+                    else{
                         getWorld().addObject(new SlideUnderground(),50 + Greenfoot.getRandomNumber(450),0);
                     }
                 }

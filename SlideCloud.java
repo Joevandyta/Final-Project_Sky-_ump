@@ -15,11 +15,7 @@ public class SlideCloud extends Cloud
      * Act - do whatever the Ground wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public SlideCloud(){
-        GreenfootImage image = getImage();
-        image.scale(180,21);
-     
-    }
+
      public void act()
     {
         super.act();

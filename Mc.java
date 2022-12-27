@@ -25,9 +25,11 @@ public class Mc extends Actor
 
     public void act()
     {
+        DeerImage();
         edge();
         fall();
         heromove();
+        
     }
 
     public void heromove(){
@@ -57,41 +59,62 @@ public class Mc extends Actor
     {
         Object under = getOneObjectAtOffset(0, getImage().getHeight()/2 + 2, Ground.class);
 
-        return under != null;
+        return under != null    ;
     }
-
+    public void DeerImage(){
+        if(gSpeed >0){
+            
+            setImage("deerdown.png");
+            change = true; 
+        }else if(gSpeed ==0){
+            
+            setImage("deerair.png");
+            change = true;  
+        }else if(gSpeed <0){
+            
+            setImage("deerup.png");
+            change = true;
+        }
+        
+    }
     public void fall()
     {
         setLocation (getX(), getY() + gSpeed);
         //setLocation (getX(), getY() + gSpeed);
-        if (onGround() && gSpeed>=0) {
+        if (onGround() && gSpeed>=-1) {
             gSpeed = -23;
             jump();
-            flag = true;
-            
-            
         }
         else{
-            if(gSpeed <24){
-                flag =false;
+            if(gSpeed <15){
+                
                 gSpeed += gravity;
             }
-        }
+        }        
+
     }
 
     public void jump(){
-                
-        if(jumpflag==true){
-            setImage("fish.png");
-            change = true;
-            jumpflag = false;
+      int scoretemp = getWorld().getObjects(Score.class).get(0).getValue();
+            MyWorld mw = (MyWorld)getWorld();
+            int height = mw.getHigh();  
 
-        }else if(jumpflag == false){
-            setImage("turtle.png");
-            change = true;
-            jumpflag = true;
+        if(this.isTouching(Underground.class)){
+            Greenfoot.playSound("Step dirt.mp3");
+        }else if(this.isTouching(Surface.class)){
+            Greenfoot.playSound("Step Surface.mp3");
+        }else if(this.isTouching(Cloud.class)){
+            Greenfoot.playSound("Step Cloud.mp3");
+        }else if(this.isTouching(Spaceship.class)){
+            Greenfoot.playSound("Step Metal.mp3");
+        }else if(this.isTouching(Spacesurface.class)){
+            Greenfoot.playSound("Step Rock.mp3");
+        }else if(this.isTouching(Softcloud.class)){
+            Greenfoot.playSound("Step Cloud.mp3");
+        }else if(this.isTouching(Ground.class)){
+            Greenfoot.playSound("Step dirt.mp3");
         }
-        Greenfoot.playSound("amongus kill.mp3");
+        
     }
 
     private void edge(){
