@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends World
+public class InGame extends World
 {
     private int spawntime=0;
     private int pause=0;
@@ -26,7 +26,7 @@ public class MyWorld extends World
      * Constructor for objects of class MyWorld.
      * 
      */
-    public MyWorld()
+    public InGame()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(550, 700, 1); 
@@ -73,9 +73,12 @@ public class MyWorld extends World
     }
 
     public void act(){
+
+            
         WinScreen();
         Things();
-        //DieScreen();
+        DieScreen();
+
     }
 
     /**

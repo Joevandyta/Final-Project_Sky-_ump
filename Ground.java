@@ -56,7 +56,7 @@ public class Ground extends Actor
         if(getY() == 699 && this.getWorld() != null){
             Score score = (Score)getWorld().getObjects(Score.class).get(0);            
             score.setPrefix("Score : ");
-            score.add(1);    
+            score.add(1);
             getWorld().removeObject(this);
         }
 
@@ -71,7 +71,7 @@ public class Ground extends Actor
     public void SpawnGroundTile(){
         if(this.getWorld() != null){            
             int scoretemp = getWorld().getObjects(Score.class).get(0).getValue();
-            MyWorld mw = (MyWorld)getWorld();
+            InGame mw = (InGame)getWorld();
             int height = mw.getHigh();
 
             if(getY() == 160){

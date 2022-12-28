@@ -94,7 +94,7 @@ public class Score extends Actor
     {
         target = newValue;
         value = newValue;
-        updateImage();
+        updateImage(); 
     }
     
     /**

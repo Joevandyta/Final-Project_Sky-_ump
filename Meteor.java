@@ -23,7 +23,7 @@ public class Meteor extends Actor
         setLocation (getX()-slide, getY());
         turn(1);
         int scoree = getWorld().getObjects(Score.class).get(0).getValue();
-        MyWorld mw = (MyWorld)getWorld();
+        InGame mw = (InGame)getWorld();
         int height = mw.getHigh();
         if(getX() == 0){
             getWorld().removeObject(this);

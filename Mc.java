@@ -25,6 +25,7 @@ public class Mc extends Actor
 
     public void act()
     {
+
         DeerImage();
         edge();
         fall();
@@ -96,7 +97,7 @@ public class Mc extends Actor
 
     public void jump(){
       int scoretemp = getWorld().getObjects(Score.class).get(0).getValue();
-            MyWorld mw = (MyWorld)getWorld();
+            InGame mw = (InGame)getWorld();
             int height = mw.getHigh();  
 
         if(this.isTouching(Underground.class)){
